@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nginx:
+    restart: always
+    container_name: nginx
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /data/docker-compose/nginx/html:/usr/share/nginx/html
+      - /data/docker-compose/nginx/www:/var/www
+      - /data/docker-compose/nginx/logs:/var/log/nginx
+      - /data/docker-compose/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /data/docker-compose/nginx/conf.d:/etc/nginx/conf.d
+      - /data/docker-compose/nginx/cert:/etc/nginx/cert
+    environment:
+      - NGINX_PORT=80
+      - TZ=Asia/Shanghai
+    privileged: true
